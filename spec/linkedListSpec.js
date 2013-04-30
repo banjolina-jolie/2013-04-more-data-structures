@@ -1,11 +1,8 @@
 describe("linkedList", function() {
   var linkedList;
-  var firstNode = makeNode("data1");
-  var secondNode = makeNode("data2");
 
   beforeEach(function() {
     linkedList = makeLinkedList();
-
   });
 
   it("should have a head and tail", function() {
@@ -20,26 +17,37 @@ describe("linkedList", function() {
   });
 
   it("should have a head value after adding first node", function(){
-    linkedList.addToTail(firstNode);
-    expect(linkedList.head).toEqual(firstNode);
+    linkedList.addToTail("data1");
+    expect(linkedList.head.value).toEqual("data1");
   });
 
   it("the 'next' property value of the firstNode should equal secondNode", function(){
-    linkedList.addToTail(firstNode);
-    linkedList.addToTail(secondNode);
-    expect(firstNode.next).toEqual(secondNode);
+    linkedList.addToTail("data1");
+    linkedList.addToTail("data2");
+    expect(linkedList.head.next.value).toEqual("data2");
   });
 
   it("should return original head and returns it", function() {
-    linkedList.addToTail(firstNode);
-    linkedList.addToTail(secondNode);
-    expect(linkedList.removeHead()).toEqual(firstNode);
+    linkedList.addToTail("data1");
+    linkedList.addToTail("data2");
+    expect(linkedList.removeHead()).toEqual("data1");
   });
 
   it("should make node linked to head the new head", function() {
-    linkedList.addToTail(firstNode);
-    linkedList.addToTail(secondNode);
+    linkedList.addToTail("data1");
+    linkedList.addToTail("data2");
     linkedList.removeHead();
-    expect(linkedList.head).toEqual(secondNode);
+    expect(linkedList.head.value).toEqual("data2");
   });
+
+  it("should have a 'contains' method that returns a boolean value indicating whether node is contained in linked list", function(){
+    linkedList.addToTail("data1");
+    linkedList.addToTail("data2");
+    linkedList.addToTail("data3");
+    expect(linkedList.contains("data2")).toEqual(true);
+    expect(linkedList.contains("data1")).toEqual(true);
+    expect(linkedList.contains("data4")).toEqual(false);
+
+  });
+
 });

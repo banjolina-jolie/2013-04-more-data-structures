@@ -4,7 +4,8 @@ var makeLinkedList = function(){
   newLinkedList.head = null;
   newLinkedList.tail = null;
 
-  newLinkedList.addToTail = function(node){
+  newLinkedList.addToTail = function(val){
+    var node = makeNode(val);
     if(!newLinkedList.head){
       this.head = node;
       this.tail = node;
@@ -16,15 +17,31 @@ var makeLinkedList = function(){
 
   newLinkedList.removeHead = function(){
     var currentHead = this.head;
-    console.log(this.head.next);
     var nextHead = this.head.next;
     delete this.head;
     this.head = nextHead;
-    console.log(nextHead);
-    return currentHead;
+    return currentHead.value;
   };
 
-  newLinkedList.contains = function(node){
+  newLinkedList.contains = function(val, node){
+    node = newLinkedList.head;
+      while(node === newLinkedList.head || node.next) {
+        if (node.value === val) {
+          return true;
+        }
+        node = node.next;
+      }
+    return false;
+      // node = node || this.head;
+      // if(node.value === val) {
+      //   return true;
+      // }
+      // if (!node.next) {
+      //   return false;
+      // } else {
+      //   node = node.next;
+      //   return newLinkedList.contains(val, node);
+      // }
   };
 
   return newLinkedList;
@@ -36,7 +53,6 @@ var makeNode = function(value){
   newNode.next = null;
 
   newNode.removeNextNode = function(){
-  };
-
+};
   return newNode;
 };
