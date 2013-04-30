@@ -1,8 +1,11 @@
 describe("linkedList", function() {
   var linkedList;
+  var firstNode = makeNode("data1");
+  var secondNode = makeNode("data2");
 
   beforeEach(function() {
     linkedList = makeLinkedList();
+
   });
 
   it("should have a head and tail", function() {
@@ -16,5 +19,14 @@ describe("linkedList", function() {
     expect(linkedList.contains).toEqual(jasmine.any(Function));
   });
 
-  // add more tests here to test the functionality of linkedList
+  it("should have a head value after adding first node", function(){
+    linkedList.addToTail(firstNode);
+    expect(linkedList.head).toEqual(firstNode);
+  });
+
+  it("the 'next' property value of the firstNode should equal secondNode", function(){
+    linkedList.addToTail(firstNode);
+    linkedList.addToTail(secondNode);
+    expect(firstNode.next).toEqual(secondNode);
+  });
 });

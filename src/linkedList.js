@@ -4,13 +4,25 @@ var makeLinkedList = function(){
   newLinkedList.head = null;
   newLinkedList.tail = null;
 
-  newLinkedList.addToTail = function(){
+  newLinkedList.addToTail = function(node){
+    if(!newLinkedList.head){
+      this.head = node;
+      this.tail = node;
+    } else {
+      this.tail.next = node;
+      this.tail = node;
+
+    }
   };
 
   newLinkedList.removeHead = function(){
+    var currentHead = this.head;
+    this.head.next = this.head;
+    delete this.head;
+    return currentHead;
   };
 
-  newLinkedList.contains = function(){
+  newLinkedList.contains = function(node){
   };
 
   return newLinkedList;
