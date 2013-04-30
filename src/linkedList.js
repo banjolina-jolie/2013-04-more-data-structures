@@ -11,14 +11,16 @@ var makeLinkedList = function(){
     } else {
       this.tail.next = node;
       this.tail = node;
-
     }
   };
 
   newLinkedList.removeHead = function(){
     var currentHead = this.head;
-    this.head.next = this.head;
+    console.log(this.head.next);
+    var nextHead = this.head.next;
     delete this.head;
+    this.head = nextHead;
+    console.log(nextHead);
     return currentHead;
   };
 

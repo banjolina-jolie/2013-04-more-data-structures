@@ -29,4 +29,17 @@ describe("linkedList", function() {
     linkedList.addToTail(secondNode);
     expect(firstNode.next).toEqual(secondNode);
   });
+
+  it("should return original head and returns it", function() {
+    linkedList.addToTail(firstNode);
+    linkedList.addToTail(secondNode);
+    expect(linkedList.removeHead()).toEqual(firstNode);
+  });
+
+  it("should make node linked to head the new head", function() {
+    linkedList.addToTail(firstNode);
+    linkedList.addToTail(secondNode);
+    linkedList.removeHead();
+    expect(linkedList.head).toEqual(secondNode);
+  });
 });
