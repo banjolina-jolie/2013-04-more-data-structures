@@ -1,4 +1,4 @@
-// Note: don't use an array to do this.
+// Note: don't use an array to do this. innocuous change testing git knowledge..
 var makeLinkedList = function(){
   var newLinkedList = {};
   newLinkedList.head = null;
