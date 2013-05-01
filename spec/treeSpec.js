@@ -11,5 +11,12 @@ describe("tree", function() {
     expect('value' in tree).toBe(true);
   });
 
-  // Add more tests here to test the functionality of tree.
+  it("should add a new node to the children array", function(){
+    tree.addChild("Node1");
+    expect("Node1").toEqual(tree.children[0].value);
+  });
+
+  it("should link child nodes to the current node", function(){
+
+  });
 });

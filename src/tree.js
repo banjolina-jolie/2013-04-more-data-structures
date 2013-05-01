@@ -1,14 +1,15 @@
-var makeTree = function(){
+var makeTree = function(val){
   var newTree = {};
-  newTree.value = undefined;
-  newTree.children = undefined;
+  newTree.value = val;
+  newTree.children = [];
   extend(newTree, treeMethods);
   return newTree;
 };
 
 var treeMethods = {};
 
-treeMethods.addChild = function(){
+treeMethods.addChild = function(val){
+  this.children.push(makeTree(val));
 };
 
 treeMethods.contains = function(){

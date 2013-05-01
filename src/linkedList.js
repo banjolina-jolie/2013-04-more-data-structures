@@ -24,24 +24,24 @@ var makeLinkedList = function(){
   };
 
   newLinkedList.contains = function(val, node){
-    node = newLinkedList.head;
-      while(node === newLinkedList.head || node.next) {
-        if (node.value === val) {
-          return true;
-        }
-        node = node.next;
-      }
-    return false;
-      // node = node || this.head;
-      // if(node.value === val) {
-      //   return true;
-      // }
-      // if (!node.next) {
-      //   return false;
-      // } else {
-      //   node = node.next;
-      //   return newLinkedList.contains(val, node);
-      // }
+    // node = newLinkedList.head;
+    //   while(node === newLinkedList.head || node.next) {
+    //     if (node.value === val) {
+    //       return true;
+    //     }
+    //     node = node.next;
+    //   }
+    // return false;
+    node = node || this.head;
+    if(node.value === val) {
+      return true;
+    }
+    if (!node.next) {
+      return false;
+    } else {
+      node = node.next;
+      return newLinkedList.contains(val, node);
+    }
   };
 
   return newLinkedList;
