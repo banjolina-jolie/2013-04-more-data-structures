@@ -12,7 +12,21 @@ treeMethods.addChild = function(val){
   this.children.push(makeTree(val));
 };
 
-treeMethods.contains = function(){
+treeMethods.contains = function(val){
+  console.log("this: " + this.value + " val: " + val);
+  if(this.value === val) {
+    console.log("in the true" + this.value);
+    return true;
+  }
+  if (this.children.length) {
+    for(var i = 0; i < this.children.length; i++) {
+      var refer = this.children[i];
+      console.log("loop: " +refer.value);
+      return this.children[i].contains(val);
+      // return false;
+    }
+  }
+  return false;
 };
 
 var extend = function(to, from){
