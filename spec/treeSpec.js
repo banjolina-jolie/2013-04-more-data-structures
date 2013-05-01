@@ -27,7 +27,9 @@ describe("tree", function() {
     tree.children[0].addChild("Node0-0");
     tree.children[0].addChild("Node0-1");
     expect(tree.contains("Node0")).toEqual(true);
-    // expect(tree.contains("Node1")).toEqual(true);
+    expect(tree.contains("Node0-1")).toEqual(true);
+    expect(tree.contains("Node1-0")).toEqual(true);
+    expect(tree.contains("Node1")).toEqual(true);
     // expect(tree.contains("Notnode")).toEqual(false);
   });
 });
