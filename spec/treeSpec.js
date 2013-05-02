@@ -2,7 +2,7 @@ describe("tree", function() {
   var tree;
 
   beforeEach(function() {
-    tree = makeTree();
+    tree = makeTree("Node0");
   });
 
   it("should have methods named 'addChild' and 'contains', and a property named 'value'", function() {
@@ -21,13 +21,16 @@ describe("tree", function() {
   });
 
   it("calling 'contains' on a node for a value that exists within that node returns true", function(){
-    tree.addChild("Node0");
-    tree.addChild("Node1");
-    tree.children[1].addChild("Node1-0");
-    tree.children[0].addChild("Node0-0");
-    tree.children[0].addChild("Node0-1");
+    tree.addChild("Node0-0");
+    tree.addChild("Node0-1");
+    tree.children[0].addChild("Node0-0-0");
+    tree.children[0].addChild("Node0-0-1");
+    tree.children[1].addChild("Node0-1-0");
+    tree.children[1].addChild("Node0-1-1");
     expect(tree.contains("Node0")).toEqual(true);
-    // expect(tree.contains("Node1")).toEqual(true);
-    // expect(tree.contains("Notnode")).toEqual(false);
+    expect(tree.contains("Node0-1")).toEqual(true);
+    expect(tree.contains("Node0-0-0")).toEqual(true); 
+    expect(tree.contains("Node0-1-1")).toEqual(true);
+    expect(tree.contains("Notnode")).toEqual(false);
   });
 });
