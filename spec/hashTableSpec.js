@@ -10,5 +10,24 @@ describe("hashTable", function() {
     expect(hashTable.retrieve).toEqual(jasmine.any(Function));
   });
 
-  // add more tests here to test the functionality of hashTable
+  it("should store string after calling insert(string)", function() {
+	hashTable.insert(["foo","bar"]);
+	hashTable.insert(["hambergnars", "delicious"]);
+  	expect(hashTable.retrieve("foo")).toEqual("bar");
+  	expect(hashTable.retrieve("hambergnars")).toEqual("delicious");
+  });
+
+  it("should return value for key passed through retrieve method", function() {
+  	hashTable.insert(["foo", "bar"]);
+  	hashTable.insert(["hambergnars", "delicious"]);
+  	expect(hashTable.retrieve("hambergnars")).toEqual("delicious");
+  });
+
+  it("should remove a twople when a key is passed through the remove method", function() {
+  	hashTable.insert(["foo", "bar"]);
+  	hashTable.insert(["hambergnars", "delicious"]);
+  	hashTable.remove("hambergnars");
+  	expect(hashTable.retrieve("hambergnars")).toEqual(undefined);
+  });
+
 });
