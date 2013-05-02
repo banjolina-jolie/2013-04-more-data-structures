@@ -1,19 +1,17 @@
-var makeSet = function(){
-  var set = Object.create(setPrototype); // fix me
-  set._storage = undefined;
+var Set = function(){
+  var set = Object.create(Set.prototype);
+  set._storage = {};
   return set;
 };
 
-var setPrototype = {};
-
-setPrototype.add = function(){
+Set.prototype.add = function(string){
+	this._storage[string] = true;
 };
 
-setPrototype.contains = function(){
+Set.prototype.contains = function(string){
+	return !!this._storage[string];
 };
 
-setPrototype.remove = function(){
+Set.prototype.remove = function(string){
+	delete this._storage[string];
 };
-
-
-//check git
