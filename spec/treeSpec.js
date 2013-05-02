@@ -27,9 +27,9 @@ describe("tree", function() {
     tree.children[0].addChild("Node0-0-1");
     tree.children[1].addChild("Node0-1-0");
     tree.children[1].addChild("Node0-1-1");
-    expect(tree.contains("Node0-0-0")).toEqual(true);
-    expect(tree.contains("Node0-0-1")).toEqual(true);
-    expect(tree.contains("Node0-1-0")).toEqual(true); 
+    expect(tree.contains("Node0")).toEqual(true);
+    expect(tree.contains("Node0-1")).toEqual(true);
+    expect(tree.contains("Node0-0-0")).toEqual(true); 
     expect(tree.contains("Node0-1-1")).toEqual(true);
     expect(tree.contains("Notnode")).toEqual(false);
   });
