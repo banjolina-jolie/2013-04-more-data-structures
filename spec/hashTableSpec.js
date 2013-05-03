@@ -27,7 +27,6 @@ describe("hashTable", function() {
   	hashTable.insert(["foo", "bar"]);
   	hashTable.insert(["hambergnars", "delicious"]);
   	hashTable.remove("hambergnars");
-    console.log(hashTable);
   	expect(hashTable.retrieve("hambergnars")).toEqual(undefined);
   });
 
