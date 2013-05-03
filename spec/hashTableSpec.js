@@ -30,4 +30,15 @@ describe("hashTable", function() {
   	expect(hashTable.retrieve("hambergnars")).toEqual(undefined);
   });
 
+  it("should double its limit when 75% of storage is filled up", function() {
+    hashTable.insert(["foo", "bar"]);
+    hashTable.insert(["hambergnars", "delicious"]);
+    hashTable.insert(["noodle", "stringy"]);
+    hashTable.insert(["gnar", "ubergnar"]);
+    hashTable.insert(["gnarbra", "totes"]);
+    hashTable.insert(["super", "duper"]);
+    expect(hashTable._limit).toEqual(10);
+    expect(hashTable.retrieve("foo")).toEqual("bar");
+  })
+
 });
