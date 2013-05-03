@@ -11,8 +11,8 @@ describe("hashTable", function() {
   });
 
   it("should store string after calling insert(string)", function() {
-	hashTable.insert(["foo","bar"]);
-	hashTable.insert(["hambergnars", "delicious"]);
+  	hashTable.insert(["foo","bar"]);
+  	hashTable.insert(["hambergnars", "delicious"]);
   	expect(hashTable.retrieve("foo")).toEqual("bar");
   	expect(hashTable.retrieve("hambergnars")).toEqual("delicious");
   });
@@ -27,6 +27,7 @@ describe("hashTable", function() {
   	hashTable.insert(["foo", "bar"]);
   	hashTable.insert(["hambergnars", "delicious"]);
   	hashTable.remove("hambergnars");
+    console.log(hashTable);
   	expect(hashTable.retrieve("hambergnars")).toEqual(undefined);
   });
 

@@ -1,5 +1,5 @@
 var HashTable = function(_limit, _storage){
-  this._limit = 8;
+  this._limit = 1;
 
   // Use a limited array to store inserted elements.
   // It'll keep you from using too much space. Usage:
@@ -10,16 +10,41 @@ var HashTable = function(_limit, _storage){
   this._storage = makeLimitedArray(this._limit);
 };
 
-HashTable.prototype.insert = function(twople){
-  this._storage.set(getIndexBelowMaxForKey(twople[0], this._limit), twople[1]);
+HashTable.prototype.insert = function(tuple){
+  var index = getIndexBelowMaxForKey(tuple[0], this._limit);
+  arrayAtIndex = this._storage.get(index);
+  if(arrayAtIndex === undefined) {
+    this._storage.set(index, [tuple])
+  } else {
+    arrayAtIndex.push(tuple);
+  }
 };
 
 HashTable.prototype.retrieve = function(key){
-  return this._storage.get(getIndexBelowMaxForKey(key, this._limit));
+  var index = getIndexBelowMaxForKey(key, this._limit);
+  arrayAtIndex = this._storage.get(index);
+  for (var i = 0; i < arrayAtIndex.length; i++) {
+    // if(arrayAtIndex[i] === undefined) {
+    //   debugger;
+    // }
+    if (arrayAtIndex[i][0] === key) {
+      return arrayAtIndex[i][1];
+    }
+  }
+  return undefined;
 };
 
 HashTable.prototype.remove = function(key){
-  this._storage.set(getIndexBelowMaxForKey(key, this._limit), undefined);
+  var index = getIndexBelowMaxForKey(key, this._limit);
+  arrayAtIndex = this._storage.get(index);
+  for (var i = 0; i < arrayAtIndex.length; i++) {
+    // if(arrayAtIndex[i] === undefined) {
+    //   debugger;
+    // }
+    if (arrayAtIndex[i][0] === key) {
+      delete arrayAtIndex[i];
+    }
+  }
 };
 
 // NOTE: For this code to work, you will NEED the code from hashTableHelpers.js
