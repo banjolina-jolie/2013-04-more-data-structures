@@ -11,23 +11,23 @@ describe("hashTable", function() {
   });
 
   it("should store string after calling insert(string)", function() {
-  	hashTable.insert(["foo","bar"]);
-  	hashTable.insert(["hambergnars", "delicious"]);
-  	expect(hashTable.retrieve("foo")).toEqual("bar");
-  	expect(hashTable.retrieve("hambergnars")).toEqual("delicious");
+    hashTable.insert(["foo","bar"]);
+    hashTable.insert(["hambergnars", "delicious"]);
+    expect(hashTable.retrieve("foo")).toEqual("bar");
+    expect(hashTable.retrieve("hambergnars")).toEqual("delicious");
   });
 
   it("should return value for key passed through retrieve method", function() {
-  	hashTable.insert(["foo", "bar"]);
-  	hashTable.insert(["hambergnars", "delicious"]);
-  	expect(hashTable.retrieve("hambergnars")).toEqual("delicious");
+    hashTable.insert(["foo", "bar"]);
+    hashTable.insert(["hambergnars", "delicious"]);
+    expect(hashTable.retrieve("hambergnars")).toEqual("delicious");
   });
 
-  it("should remove a twople when a key is passed through the remove method", function() {
-  	hashTable.insert(["foo", "bar"]);
-  	hashTable.insert(["hambergnars", "delicious"]);
-  	hashTable.remove("hambergnars");
-  	expect(hashTable.retrieve("hambergnars")).toEqual(undefined);
+  it("should remove a tuple when a key is passed through the remove method", function() {
+    hashTable.insert(["foo", "bar"]);
+    hashTable.insert(["hambergnars", "delicious"]);
+    hashTable.remove("hambergnars");
+    expect(hashTable.retrieve("hambergnars")).toEqual(undefined);
   });
 
   it("should double its limit when 75% of storage is filled up", function() {
@@ -37,8 +37,7 @@ describe("hashTable", function() {
     hashTable.insert(["gnar", "ubergnar"]);
     hashTable.insert(["gnarbra", "totes"]);
     hashTable.insert(["super", "duper"]);
-    expect(hashTable._limit).toEqual(10);
-    expect(hashTable.retrieve("foo")).toEqual("bar");
-  })
-
+    expect(hashTable.retrieve("super")).toEqual("duper");
+    expect(hashTable._limit).toEqual(12);
+  });
 });
