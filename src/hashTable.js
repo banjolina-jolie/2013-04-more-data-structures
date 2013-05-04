@@ -11,7 +11,7 @@ var HashTable = function(_limit, _storage){
   this._storage = makeLimitedArray(this._limit);
 };
 
-HashTable.prototype.rehash = function() {
+HashTable.prototype.rehashBigger = function() {
   var tempArray = [];
   for(var i = 0; i < this._limit; i++) {
     if(this._storage.get(i)) {
@@ -29,12 +29,32 @@ HashTable.prototype.rehash = function() {
   }
 };
 
+HashTable.prototype.rehashSmaller = function() {
+  var tempArray = [];
+  for(var i = 0; i < this._limit; i++) {
+    if(this._storage.get(i)) {
+      tempArray.push(this._storage.get(i));
+    }
+  }
+  this._limit = (this._limit / 2);
+  this._storage = makeLimitedArray(this._limit);
+
+  for(var j = 0; j < tempArray.length; j++) {
+    for (var k = 0; k < tempArray[j].length; k++) {
+      this.insert(tempArray[j][k]);
+      this.counter--;
+    }
+  }
+};
+
 HashTable.prototype.insert = function(tuple){
+  if(!tuple) {
+    return;
+  }
   this.counter++;
   if(this.counter >= (0.75 * this._limit)) {
-    this.rehash();
+    this.rehashBigger();
   }
-
   var index = getIndexBelowMaxForKey(tuple[0], this._limit);
   arrayAtIndex = this._storage.get(index);
   if(arrayAtIndex === undefined) {
@@ -54,11 +74,14 @@ HashTable.prototype.retrieve = function(key){
       }
     }
   }
-  return undefined;
+  return;
 };
 
 HashTable.prototype.remove = function(key){
   this.counter--;
+  if(this.counter <= (0.25 * this._limit)) {
+    this.rehashSmaller();
+  }
   var index = getIndexBelowMaxForKey(key, this._limit);
   arrayAtIndex = this._storage.get(index);
   for (var i = 0; i < arrayAtIndex.length; i++) {
