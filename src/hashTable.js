@@ -18,20 +18,20 @@ HashTable.prototype.rehash = function() {
       tempArray.push(this._storage.get(i));
     }
   }
-  console.log(tempArray);
   this._limit = (this._limit * 2);
   this._storage = makeLimitedArray(this._limit);
 
   for(var j = 0; j < tempArray.length; j++) {
     for (var k = 0; k < tempArray[j].length; k++) {
       this.insert(tempArray[j][k]);
+      this.counter--;
     }
   }
 };
 
 HashTable.prototype.insert = function(tuple){
   this.counter++;
-  if(this.counter > (0.74 * this._limit)) {
+  if(this.counter >= (0.75 * this._limit)) {
     this.rehash();
   }
 
@@ -39,7 +39,6 @@ HashTable.prototype.insert = function(tuple){
   arrayAtIndex = this._storage.get(index);
   if(arrayAtIndex === undefined) {
     this._storage.set(index, [tuple]);
-    this.counter++;
   } else {
     arrayAtIndex.push(tuple);
   }
