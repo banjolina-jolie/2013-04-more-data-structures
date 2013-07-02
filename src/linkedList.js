@@ -26,6 +26,8 @@ var makeLinkedList = function(){
   newLinkedList.contains = function(val, node){
     // Below are two ways to implement .contains
 
+    // Iterative
+
     // node = newLinkedList.head;
     //   while(node === newLinkedList.head || node.next) {
     //     if (node.value === val) {
@@ -34,6 +36,8 @@ var makeLinkedList = function(){
     //     node = node.next;
     //   }
     // return false;
+
+    // Recursive
 
     node = node || this.head;
     if(node.value === val) {

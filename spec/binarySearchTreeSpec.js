@@ -19,8 +19,13 @@ describe("binarySearchTree", function() {
     expect(binarySearchTree.contains(3)).toEqual(true);
   });
 
-  it("should insert a node with a value upon calling insert", function() {
-    binarySearchTree()
+  it("should call a function on every node in tree", function() {
+    binarySearchTree.insert(8);
+    binarySearchTree.insert(12);
+    var doIt = function(){
+      alert(this.val);
+    }
+    binarySearchTree.depthFirstLog(doIt);
   });
 
 });
